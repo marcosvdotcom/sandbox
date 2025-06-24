@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Materials Options</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FFB81C 0%, #F7B500 100%);
+            color: #2d3436;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: #f8f9fa;
+        }
+
+        .option-column {
+            background: white;
+            border-right: 3px solid #e9ecef;
+        }
+
+        .option-column:last-child {
+            border-right: none;
+        }
+
+        .option-header {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid #e17055;
+        }
+
+        .option-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        .option-subtitle {
+            font-size: 0.9rem;
+            color: #636e72;
+            font-style: italic;
+        }
+
+        .icon-container {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            position: relative;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Placeholder backgrounds - replace these with your icon paths */
+        .icon-open {
+            background-image: url('your-open-icon.png'); /* Replace with your OER icon */
+        }
+
+        .icon-library {
+            background-image: url('your-library-icon.png'); /* Replace with your Library icon */
+        }
+
+        .icon-textbook {
+            background-image: url('your-textbook-icon.png'); /* Replace with your Textbook icon */
+        }
+
+        .icon-digital {
+            background-image: url('your-digital-icon.png'); /* Replace with your Digital icon */
+        }
+
+        /* Fallback placeholder styling when no image is loaded */
+        .icon-placeholder {
+            background-color: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .info-section {
+            padding: 25px 20px;
+            border-bottom: 2px solid #f1f2f6;
+        }
+
+        .info-section:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-content {
+            color: #636e72;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .cost-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .cost-free {
+            background: #00b894;
+            color: white;
+        }
+
+        .cost-low {
+            background: #fdcb6e;
+            color: #2d3436;
+        }
+
+        .cost-high {
+            background: #e17055;
+            color: white;
+        }
+
+        .learn-more {
+            background: #8B441D;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* SVG Icons */
+        .open-icon {
+            fill: #00b894;
+        }
+
+        .library-icon {
+            fill: #6c5ce7;
+        }
+
+        .textbook-icon {
+            fill: #e17055;
+        }
+
+        .digital-icon {
+            fill: #0984e3;
+        }
+
+        @media (max-width: 1200px) {
+            .comparison-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .option-column {
+                border-bottom: 3px solid #e9ecef;
+                border-right: none;
+            }
+            
+            .option-column:nth-child(odd) {
+                border-right: 3px solid #e9ecef;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .option-column {
+                border-right: none;
+                border-bottom: 3px solid #e9ecef;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>COURSE MATERIALS OPTIONS</h1>
+            <p>Compare educational resources to find the best fit for your needs</p>
+        </div>
+
+        <div class="comparison-grid">
+            <!-- Open Educational Resources -->
+            <div class="option-column">
+                <div class="option-header">
+                    <div class="option-title">Open Educational Resources</div>
+                </div>
+                
+                <div class="icon-container">
+                    <div class="icon icon-open icon-placeholder">
+                        OER ICON
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">AKA</div>
+                    <div class="info-content">OER, Open educational resources</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Defining Features</div>
+                    <div class="info-content">Always free and remixable educational materials that can be customized for specific course needs</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Availability</div>
+                    <div class="info-content">Available at and even before courses start</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Ongoing Access</div>
+                    <div class="info-content">Indefinite access - yours to keep forever</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Student Cost</div>
+                    <div class="info-content">
+                        <div class="cost-indicator cost-free">$0 - Completely Free</div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Learn More</div>
+                    <div class="info-content">UI Library, CETL</div>
+                </div>
+            </div>
+
+            <!-- Library Course Reserves -->
+            <div class="option-column">
+                <div class="option-header">
+                    <div class="option-title">Library Course Reserves</div>
+                </div>
+                
+                <div class="icon-container">
+                    <div class="icon icon-library icon-placeholder">
+                        LIBRARY ICON
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">AKA</div>
+                    <div class="info-content">Leganto, Canvas library reading list</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Defining Features</div>
+                    <div class="info-content">Free for students with different titles offering various seat and digital options</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Availability</div>
+                    <div class="info-content">Available at start of term or once materials are selected</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Ongoing Access</div>
+                    <div class="info-content">Varies based on subscription - can be indefinite for some materials</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Student Cost</div>
+                    <div class="info-content">
+                        <div class="cost-indicator cost-free">$0 - No Cost</div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Learn More</div>
+                    <div class="info-content">UI Library</div>
+                </div>
+            </div>
+
+            <!-- Standard Textbooks -->
+            <div class="option-column">
+                <div class="option-header">
+                    <div class="option-title">Standard Textbooks</div>
+                </div>
+                
+                <div class="icon-container">
+                    <div class="icon icon-textbook icon-placeholder">
+                        TEXTBOOK ICON
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">AKA</div>
+                    <div class="info-content">For profit textbooks, traditional textbooks</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Defining Features</div>
+                    <div class="info-content">Can be physical or digital. Students purchase full price copy or rent for set period</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Availability</div>
+                    <div class="info-content">Varies - the Bookstore can assist with access to new and used books</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Ongoing Access</div>
+                    <div class="info-content">Indefinite once purchased, by term in case of rental</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Student Cost</div>
+                    <div class="info-content">
+                        <div class="cost-indicator cost-high">$-$$$ - Variable Cost</div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Learn More</div>
+                    <div class="info-content">UIdaho Bookstore</div>
+                </div>
+            </div>
+
+            <!-- Inclusive Access -->
+            <div class="option-column">
+                <div class="option-header">
+                    <div class="option-title">Inclusive Access</div>
+                </div>
+                
+                <div class="icon-container">
+                    <div class="icon icon-digital icon-placeholder">
+                        DIGITAL ICON
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">AKA</div>
+                    <div class="info-content">BibliU</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Defining Features</div>
+                    <div class="info-content">Charged through student accounts, alleviating out-of-pocket costs</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Availability</div>
+                    <div class="info-content">Available at start of term or once materials are selected</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Ongoing Access</div>
+                    <div class="info-content">Only when actively enrolled in that course</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Student Cost</div>
+                    <div class="info-content">
+                        <div class="cost-indicator cost-low">$-$$+ - Reduced Cost</div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Learn More</div>
+                    <div class="info-content">UIdaho Bookstore</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
